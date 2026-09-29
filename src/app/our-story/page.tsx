@@ -1,102 +1,114 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { PageHead } from "@/components/ui/page-head";
 
 export default function OurStoryPage() {
   return (
-    <div className="bg-ivory py-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <p className="text-xs uppercase font-semibold text-coffee tracking-widest">
-            Our Story
-          </p>
-          <h1 className="text-4xl sm:text-5xl font-serif font-bold text-espresso leading-tight">
-            Small-Batch Coffee for Slow Mornings.
-          </h1>
-        </div>
+    <>
+      <PageHead
+        label="Our story"
+        title={
+          <>
+            Small-batch coffee for <em>slow mornings.</em>
+          </>
+        }
+      />
 
-        {/* Hero Image */}
-        <div className="relative aspect-[16/9] bg-sand">
+      <div className="wrap">
+        <div className="relative aspect-[16/8] bg-oat overflow-hidden">
           <Image
             src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=1600&q=80"
-            alt="Morrow Coffee Roastery"
+            alt="Inside the Morrow Coffee roastery"
             fill
+            sizes="(min-width: 1360px) 1248px, 100vw"
             className="object-cover"
             priority
           />
         </div>
+      </div>
 
-        {/* Narrative Section 1 */}
-        <div className="space-y-6 text-coffee leading-relaxed text-lg">
-          <p>
-            Morrow Coffee was born out of a simple desire: to make great specialty coffee more accessible, approachable, and part of everyday slow mornings.
-          </p>
-          <p>
-            Too often, specialty coffee feels intimidating — filled with complex jargon, overly precious brewing methods, and an emphasis on exclusivity. We wanted to build something different: a roastery focused on quality and craft, but grounded in warmth and simplicity.
-          </p>
-        </div>
-
-        {/* Quote */}
-        <div className="border-l-2 border-espresso pl-6 py-2 my-8">
-          <p className="font-serif text-2xl text-espresso italic">
-            "Coffee should be easy to love, thoughtful to source, and roasted to celebrate the bean."
-          </p>
-        </div>
-
-        {/* Sourcing Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-4 text-coffee leading-relaxed">
-            <h2 className="text-2xl font-serif font-bold text-espresso">
-              Thoughtful Sourcing
-            </h2>
+      <section className="section-md">
+        <div className="wrap grid gap-10 lg:grid-cols-[1fr_1.4fr]">
+          <p className="label">01 / Why we started</p>
+          <div className="space-y-6 text-xl max-w-2xl">
             <p>
-              We partner directly with smallholder farmers and independent cooperatives across Ethiopia, Colombia, Guatemala, and beyond. We pay premiums above Fair Trade prices to support sustainable farming practices and the communities behind every harvest.
+              Morrow Coffee was born out of a simple desire: to make great specialty coffee more accessible,
+              approachable, and part of everyday slow mornings.
             </p>
-          </div>
-          <div className="relative aspect-[4/3] bg-sand">
-            <Image
-              src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&q=80"
-              alt="Coffee harvesting"
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-
-        {/* Roasting Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="relative aspect-[4/3] bg-sand order-2 md:order-1">
-            <Image
-              src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80"
-              alt="Coffee Roasting Process"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <div className="space-y-4 text-coffee leading-relaxed order-1 md:order-2">
-            <h2 className="text-2xl font-serif font-bold text-espresso">
-              Small-Batch Roasting
-            </h2>
-            <p>
-              We roast in small batches on our vintage cast-iron roaster, adjusting profiles for each unique origin. We never over-roast, aiming instead to bring out the distinct fruit, floral, and sweet characteristics inherent in every coffee bean.
+            <p className="text-mute">
+              Too often, specialty coffee feels intimidating, filled with complex jargon, overly precious brewing
+              methods, and an emphasis on exclusivity. We wanted to build something different: a roastery focused on
+              quality and craft, but grounded in warmth and simplicity.
             </p>
           </div>
         </div>
+      </section>
 
-        {/* CTA */}
-        <div className="text-center pt-8 border-t border-sand">
-          <h3 className="text-2xl font-serif font-bold text-espresso mb-4">
-            Taste the Difference
-          </h3>
-          <Link
-            href="/shop"
-            className="inline-block px-8 py-4 bg-espresso text-ivory hover:bg-espresso/90 transition-colors text-sm font-semibold uppercase tracking-wider"
-          >
-            Explore Our Coffees
+      <section className="bg-bean text-paper on-dark section-lg">
+        <div className="wrap">
+          <blockquote className="t-h2 max-w-5xl">
+            &ldquo;Coffee should be easy to love, thoughtful to source, and <em>roasted to celebrate the bean.</em>&rdquo;
+          </blockquote>
+        </div>
+      </section>
+
+      <section className="section-lg">
+        <div className="wrap space-y-24 md:space-y-32">
+          <div className="grid gap-10 lg:grid-cols-2 items-center">
+            <div className="max-w-md">
+              <p className="label mb-6">02 / Sourcing</p>
+              <h2 className="t-h2">Thoughtful sourcing.</h2>
+              <p className="mt-6 text-mute">
+                We partner directly with smallholder farmers and independent cooperatives across Ethiopia, Colombia,
+                Guatemala, and beyond. We pay premiums above Fair Trade prices to support sustainable farming practices
+                and the communities behind every harvest.
+              </p>
+            </div>
+            <div className="relative aspect-[4/3] bg-oat overflow-hidden">
+              <Image
+                src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=1000&q=80"
+                alt="Coffee harvest"
+                fill
+                sizes="(min-width: 1024px) 600px, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="grid gap-10 lg:grid-cols-2 items-center">
+            <div className="relative aspect-[4/3] bg-oat overflow-hidden order-2 lg:order-1">
+              <Image
+                src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1000&q=80"
+                alt="Roasted coffee beans"
+                fill
+                sizes="(min-width: 1024px) 600px, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="max-w-md order-1 lg:order-2">
+              <p className="label mb-6">03 / Roasting</p>
+              <h2 className="t-h2">Small-batch roasting.</h2>
+              <p className="mt-6 text-mute">
+                We roast in small batches on our vintage cast-iron roaster, adjusting profiles for each unique origin.
+                We never over-roast, aiming instead to bring out the distinct fruit, floral, and sweet characteristics
+                inherent in every coffee bean.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-sun section-lg">
+        <div className="wrap flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <h2 className="t-h2 max-w-2xl">
+            Taste the <em>difference.</em>
+          </h2>
+          <Link href="/shop" className="btn btn-ink self-start md:self-auto">
+            Explore our coffees
           </Link>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

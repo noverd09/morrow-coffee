@@ -2,60 +2,64 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { motion } from "framer-motion";
+import { Bag } from "@/components/brand/bag";
 import { Product } from "@/lib/types";
 import { useCart } from "@/lib/hooks/use-cart";
+import { formatHour, phaseName } from "@/lib/sky";
 
 interface ProductCardProps {
   product: Product;
+  index?: number;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product, index = 0 }) => {
   const { addToCart } = useCart();
 
-  const handleQuickAdd = (e: React.MouseEvent) => {
-    e.preventDefault();
-    addToCart(product, "250g", "whole-bean", 1);
-  };
-
   return (
-    <div className="group flex flex-col">
-      <Link href={`/product/${product.slug}`} className="block relative aspect-[4/5] bg-sand overflow-hidden">
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
+    <motion.article
+      className="group flex flex-col"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ delay: (index % 3) * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <Link
+        href={`/product/${product.slug}`}
+        className="relative block bg-oat aspect-[4/5] overflow-hidden"
+        aria-label={`${product.name}, ${product.origin}`}
+      >
+        <span className="label absolute top-4 left-4 z-10">{formatHour(product.hour)}</span>
+        <span className="label absolute top-4 right-4 z-10 text-mute">{phaseName(product.hour)}</span>
+        <Bag
+          name={product.name}
+          origin={product.origin}
+          hour={product.hour}
+          className="absolute left-1/2 -translate-x-1/2 bottom-5 w-[62%] h-auto transition-transform duration-500 ease-out group-hover:-translate-y-2 motion-reduce:transition-none"
         />
-        {/* Roast badge */}
-        <div className="absolute top-3 left-3 bg-ivory/90 backdrop-blur-sm px-2.5 py-1 text-xs uppercase tracking-wider font-semibold text-espresso">
-          {product.roastLevel}
-        </div>
       </Link>
 
-      <div className="mt-4 flex flex-col flex-1">
-        <div className="flex justify-between items-start gap-2">
-          <Link href={`/product/${product.slug}`}>
-            <h3 className="font-serif text-lg font-bold text-espresso group-hover:text-coffee transition-colors">
+      <div className="mt-5 flex items-start justify-between gap-4">
+        <div>
+          <h3 className="t-h3">
+            <Link href={`/product/${product.slug}`} className="link-under">
               {product.name}
-            </h3>
-          </Link>
-          <span className="font-medium text-espresso">${product.price}</span>
+            </Link>
+          </h3>
+          <p className="label text-mute mt-2">{product.origin}</p>
         </div>
-
-        <p className="text-coffee text-xs uppercase tracking-wider mt-1">{product.origin}</p>
-
-        <p className="text-coffee/80 text-xs mt-2 line-clamp-1">
-          {product.tastingNotes.join(" · ")}
-        </p>
-
-        <button
-          onClick={handleQuickAdd}
-          className="mt-4 w-full py-2.5 border border-espresso text-espresso hover:bg-espresso hover:text-ivory transition-colors text-xs font-semibold uppercase tracking-wider"
-        >
-          Add to Cart
-        </button>
+        <p className="font-display text-2xl">${product.price}</p>
       </div>
-    </div>
+
+      <p className="mt-3 text-mute">{product.tastingNotes.join(", ")}</p>
+
+      <button
+        type="button"
+        onClick={() => addToCart(product, "250g", "whole-bean", 1)}
+        className="btn btn-line mt-5 w-full"
+      >
+        Add to bag
+      </button>
+    </motion.article>
   );
 };

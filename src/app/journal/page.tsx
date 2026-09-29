@@ -2,67 +2,54 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { articles } from "@/lib/data/articles";
+import { PageHead } from "@/components/ui/page-head";
+
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric" }).format(new Date(date));
 
 export default function JournalPage() {
   return (
-    <div className="py-16 bg-ivory">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h1 className="text-4xl sm:text-5xl font-serif font-bold text-espresso uppercase tracking-wider mb-4">
-            The Journal
-          </h1>
-          <p className="text-coffee leading-relaxed">
-            Stories, brew guides, and notes from our roastery on the craft of great coffee.
-          </p>
-        </div>
+    <>
+      <PageHead
+        label="The journal"
+        title={
+          <>
+            Notes from <em>the roastery.</em>
+          </>
+        }
+        intro="Stories, brew guides, and notes on the craft of great coffee."
+      />
 
-        {/* Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {articles.map((article) => (
-            <Link
-              key={article.id}
-              href={`/journal/${article.slug}`}
-              className="group flex flex-col"
-            >
-              <div className="relative aspect-[16/10] bg-sand overflow-hidden mb-6">
-                <Image
-                  src={article.image}
-                  alt={article.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-
-              <div className="flex-1 flex flex-col space-y-3">
-                <div className="flex items-center gap-3 text-xs uppercase tracking-wider text-coffee">
-                  <span>
-                    {new Date(article.date).toLocaleDateString("en-US", {
-                      month: "long",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
-                  </span>
-                  <span>·</span>
-                  <span>{article.author}</span>
+      <div className="wrap pb-24 md:pb-32">
+        <ul className="border-t rule">
+          {articles.map((a, i) => (
+            <li key={a.id} className="border-b rule">
+              <Link
+                href={`/journal/${a.slug}`}
+                className="group grid gap-6 py-10 md:grid-cols-[3rem_1fr_360px] md:items-center"
+              >
+                <span className="label hidden md:block">{String(i + 1).padStart(2, "0")}</span>
+                <div>
+                  <p className="label text-mute mb-4">
+                    {formatDate(a.date)} / {a.author}
+                  </p>
+                  <h2 className="t-h3 text-[clamp(2rem,4vw,3.5rem)] link-under w-fit">{a.title}</h2>
+                  <p className="mt-4 text-mute max-w-xl line-clamp-3">{a.excerpt}</p>
                 </div>
-
-                <h2 className="font-serif text-2xl font-bold text-espresso group-hover:text-coffee transition-colors leading-tight">
-                  {article.title}
-                </h2>
-
-                <p className="text-coffee leading-relaxed line-clamp-3">
-                  {article.excerpt}
-                </p>
-
-                <span className="text-espresso font-semibold text-sm uppercase tracking-wider underline underline-offset-4 group-hover:text-coffee transition-colors">
-                  Read More
-                </span>
-              </div>
-            </Link>
+                <div className="relative aspect-[3/2] overflow-hidden bg-oat">
+                  <Image
+                    src={a.image}
+                    alt=""
+                    fill
+                    sizes="(min-width: 768px) 360px, 100vw"
+                    className="object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-105"
+                  />
+                </div>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
-    </div>
+    </>
   );
 }

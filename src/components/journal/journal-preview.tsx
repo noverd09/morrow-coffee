@@ -3,60 +3,50 @@ import Link from "next/link";
 import Image from "next/image";
 import { articles } from "@/lib/data/articles";
 
+const formatDate = (date: string) =>
+  new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric" }).format(new Date(date));
+
 export const JournalPreview = () => {
   return (
-    <section className="py-24 bg-ivory">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12">
+    <section className="section-lg">
+      <div className="wrap">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-espresso uppercase tracking-wider">
-              The Journal
-            </h2>
-            <p className="text-coffee text-sm mt-2">
-              Stories, brew guides, and notes from the roastery.
-            </p>
+            <p className="label mb-6">05 / The journal</p>
+            <h2 className="t-h2">Notes from the roastery.</h2>
           </div>
-          <Link
-            href="/journal"
-            className="text-espresso hover:text-coffee font-semibold text-sm uppercase tracking-wider mt-4 sm:mt-0 underline underline-offset-4"
-          >
-            Read All
+          <Link href="/journal" className="btn btn-line self-start md:self-auto">
+            Read the journal
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {articles.slice(0, 3).map((article) => (
-            <Link
-              key={article.id}
-              href={`/journal/${article.slug}`}
-              className="group flex flex-col"
-            >
-              <div className="relative aspect-[16/10] bg-sand overflow-hidden">
-                <Image
-                  src={article.image}
-                  alt={article.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div className="mt-4 flex-1 flex flex-col">
-                <p className="text-coffee text-xs uppercase tracking-wider mb-2">
-                  {new Date(article.date).toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </p>
-                <h3 className="font-serif text-lg font-bold text-espresso group-hover:text-coffee transition-colors leading-snug">
-                  {article.title}
+        <ul className="border-t rule">
+          {articles.slice(0, 3).map((a) => (
+            <li key={a.id} className="border-b rule">
+              <Link
+                href={`/journal/${a.slug}`}
+                className="group grid gap-x-8 gap-y-4 py-8 md:grid-cols-[8rem_1.4fr_1fr_11rem] md:items-center"
+              >
+                <time dateTime={a.date} className="label text-mute">
+                  {formatDate(a.date)}
+                </time>
+                <h3 className="t-h3 text-[clamp(1.75rem,3.2vw,2.75rem)] link-under self-start md:self-center w-fit">
+                  {a.title}
                 </h3>
-                <p className="text-coffee text-sm mt-2 line-clamp-2">
-                  {article.excerpt}
-                </p>
-              </div>
-            </Link>
+                <p className="text-mute line-clamp-2">{a.excerpt}</p>
+                <div className="relative aspect-[3/2] overflow-hidden bg-oat">
+                  <Image
+                    src={a.image}
+                    alt=""
+                    fill
+                    sizes="176px"
+                    className="object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-105"
+                  />
+                </div>
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

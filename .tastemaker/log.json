@@ -1,0 +1,16 @@
+[
+  {
+    "date": "2026-09-29",
+    "project": "coffee-mockup (Morrow Coffee)",
+    "macrostructure": "long-scroll-narrative + editorial-index",
+    "arc": ["hook: hero", "tension: hour dial", "solution: lineup index", "how: manifesto + 3 steps", "proof: journal", "close: sunrise CTA"],
+    "nav": "centered-logo, split links / bag, announcement strip",
+    "hero": "type-led, sun + bag, ticker horizon",
+    "footer": "oversized wordmark with sun, ink",
+    "mood": "warm-editorial",
+    "palette": "hand-set: ink #1B120C, paper #F3EBDC, ember #C23A12, sun #F2B233, bean #3F4A2E",
+    "headline": "Pick your first hour.",
+    "cta": "Choose your hour",
+    "notes": "skill python scripts not run (python missing); contrast verified with node WCAG math"
+  }
+]

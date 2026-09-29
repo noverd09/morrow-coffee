@@ -2,9 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { Bag } from "@/components/brand/bag";
+import { PageHead } from "@/components/ui/page-head";
 import { useCart } from "@/lib/hooks/use-cart";
-import { Minus, Plus, Trash2 } from "lucide-react";
 
 export default function CartPage() {
   const { items, updateQuantity, removeFromCart, subtotal } = useCart();
@@ -14,133 +14,107 @@ export default function CartPage() {
   const total = subtotal + shippingCost;
 
   return (
-    <div className="py-12 bg-ivory">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-serif font-bold text-espresso uppercase tracking-wider mb-8 text-center sm:text-left">
-          Your Cart
-        </h1>
+    <>
+      <PageHead label="Your bag" title={<>Your <em>bag.</em></>} />
 
+      <div className="wrap pb-24 md:pb-32">
         {items.length === 0 ? (
-          <div className="text-center py-20 bg-sand/20 border border-sand">
-            <p className="text-coffee text-lg mb-6">Your cart is currently empty.</p>
-            <Link
-              href="/shop"
-              className="inline-block px-8 py-4 bg-espresso text-ivory hover:bg-espresso/90 transition-colors text-sm font-semibold uppercase tracking-wider"
-            >
-              Explore Our Coffees
+          <div className="border-t rule pt-12">
+            <p className="t-h3 max-w-md">Nothing in your bag yet.</p>
+            <p className="mt-3 text-mute">Pick a coffee for your first hour.</p>
+            <Link href="/shop" className="btn btn-ink mt-8">
+              Explore our coffees
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Items List */}
-            <div className="lg:col-span-2 space-y-6">
+          <div className="grid gap-12 lg:grid-cols-[1fr_400px] lg:gap-20 items-start">
+            <ul className="border-t rule">
               {items.map((item, index) => {
-                const sizeMultiplier = item.size === "500g" ? 1.8 : item.size === "1kg" ? 3.2 : 1;
-                const itemPrice = item.product.price * sizeMultiplier;
+                const mult = item.size === "500g" ? 1.8 : item.size === "1kg" ? 3.2 : 1;
+                const itemPrice = item.product.price * mult;
 
                 return (
-                  <div
-                    key={index}
-                    className="flex flex-col sm:flex-row gap-6 p-6 bg-sand/10 border border-sand"
-                  >
-                    <div className="relative w-full sm:w-32 aspect-square bg-sand flex-shrink-0">
-                      <Image
-                        src={item.product.image}
-                        alt={item.product.name}
-                        fill
-                        className="object-cover"
+                  <li key={index} className="flex gap-5 sm:gap-8 py-8 border-b rule">
+                    <div className="w-24 sm:w-36 shrink-0 bg-oat relative aspect-[4/5] overflow-hidden self-start">
+                      <Bag
+                        name={item.product.name}
+                        origin={item.product.origin}
+                        hour={item.product.hour}
+                        className="absolute inset-x-[14%] top-[10%] w-[72%] h-auto"
                       />
                     </div>
 
-                    <div className="flex-1 flex flex-col justify-between">
-                      <div>
-                        <div className="flex justify-between items-start">
-                          <Link href={`/product/${item.product.slug}`}>
-                            <h3 className="font-serif text-lg font-bold text-espresso hover:text-coffee transition-colors">
+                    <div className="flex-1 flex flex-col justify-between gap-6">
+                      <div className="flex justify-between gap-4">
+                        <div>
+                          <h2 className="t-h3">
+                            <Link href={`/product/${item.product.slug}`} className="link-under">
                               {item.product.name}
-                            </h3>
-                          </Link>
-                          <span className="font-bold text-espresso">
-                            ${(itemPrice * item.quantity).toFixed(2)}
-                          </span>
+                            </Link>
+                          </h2>
+                          <p className="label text-mute mt-2">
+                            {item.size} / {item.grind.replace("-", " ")}
+                          </p>
                         </div>
-                        <p className="text-coffee text-sm mt-1">
-                          Size: <span className="text-espresso font-medium">{item.size}</span> | Grind:{" "}
-                          <span className="text-espresso font-medium">{item.grind}</span>
-                        </p>
+                        <p className="font-display text-2xl tabular-nums">${(itemPrice * item.quantity).toFixed(2)}</p>
                       </div>
 
-                      <div className="flex justify-between items-center mt-6">
-                        <div className="flex items-center border border-sand">
+                      <div className="flex items-center gap-5">
+                        <div className="flex items-center border border-ink/30">
                           <button
+                            type="button"
                             onClick={() => updateQuantity(index, item.quantity - 1)}
-                            className="px-3 py-1 text-espresso hover:bg-sand/30"
-                            aria-label="Decrease quantity"
+                            className="size-11 hover:bg-oat transition-colors"
+                            aria-label={`Decrease ${item.product.name} quantity`}
                           >
-                            <Minus size={14} />
+                            &minus;
                           </button>
-                          <span className="px-4 py-1 text-sm font-medium">{item.quantity}</span>
+                          <span className="w-10 text-center tabular-nums">{item.quantity}</span>
                           <button
+                            type="button"
                             onClick={() => updateQuantity(index, item.quantity + 1)}
-                            className="px-3 py-1 text-espresso hover:bg-sand/30"
-                            aria-label="Increase quantity"
+                            className="size-11 hover:bg-oat transition-colors"
+                            aria-label={`Increase ${item.product.name} quantity`}
                           >
-                            <Plus size={14} />
+                            +
                           </button>
                         </div>
-
-                        <button
-                          onClick={() => removeFromCart(index)}
-                          className="text-coffee hover:text-espresso flex items-center gap-1 text-sm"
-                        >
-                          <Trash2 size={16} />
-                          <span>Remove</span>
+                        <button type="button" onClick={() => removeFromCart(index)} className="label link-under py-2">
+                          Remove
                         </button>
                       </div>
                     </div>
-                  </div>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
 
-            {/* Order Summary */}
-            <div className="bg-sand/20 border border-sand p-6 h-fit space-y-6">
-              <h2 className="text-xl font-serif font-bold text-espresso uppercase tracking-wider">
-                Order Summary
-              </h2>
-
-              <div className="space-y-3 text-sm">
-                <div className="flex justify-between text-coffee">
-                  <span>Subtotal</span>
-                  <span className="text-espresso font-medium">${subtotal.toFixed(2)}</span>
+            <aside className="bg-oat p-8 space-y-6 lg:sticky lg:top-28" aria-label="Order summary">
+              <h2 className="t-h3">Order summary</h2>
+              <dl className="space-y-3">
+                <div className="flex justify-between">
+                  <dt className="label text-mute">Subtotal</dt>
+                  <dd className="tabular-nums">${subtotal.toFixed(2)}</dd>
                 </div>
-                <div className="flex justify-between text-coffee">
-                  <span>Shipping</span>
-                  <span className="text-espresso font-medium">
-                    {shippingCost === 0 ? "Free" : `$${shippingCost.toFixed(2)}`}
-                  </span>
+                <div className="flex justify-between">
+                  <dt className="label text-mute">Shipping</dt>
+                  <dd className="tabular-nums">{shippingCost === 0 ? "Free" : `$${shippingCost.toFixed(2)}`}</dd>
                 </div>
                 {shippingCost > 0 && (
-                  <p className="text-xs text-coffee">
-                    Add ${(shippingThreshold - subtotal).toFixed(2)} more for free shipping
-                  </p>
+                  <p className="label text-mute">Add ${(shippingThreshold - subtotal).toFixed(2)} for free shipping</p>
                 )}
-                <div className="border-t border-sand pt-3 flex justify-between text-base font-bold text-espresso">
-                  <span>Total</span>
-                  <span>${total.toFixed(2)}</span>
+                <div className="flex justify-between items-baseline border-t rule pt-4">
+                  <dt className="label">Total</dt>
+                  <dd className="font-display text-3xl tabular-nums">${total.toFixed(2)}</dd>
                 </div>
-              </div>
-
-              <Link
-                href="/checkout"
-                className="block w-full py-4 bg-espresso text-ivory hover:bg-espresso/90 transition-colors text-center text-sm font-bold uppercase tracking-widest"
-              >
-                Proceed to Checkout
+              </dl>
+              <Link href="/checkout" className="btn btn-ember w-full py-4">
+                Proceed to checkout
               </Link>
-            </div>
+            </aside>
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }

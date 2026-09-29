@@ -1,19 +1,19 @@
 import { HeroSection } from "@/components/hero/hero-section";
-import { FeaturedProducts } from "@/components/products/featured-products";
-import { BrandStorySection } from "@/components/hero/brand-story-section";
-import { CoffeeFinder } from "@/components/products/coffee-finder";
-import { LifestyleSection } from "@/components/hero/lifestyle-section";
+import { HourDial } from "@/components/products/hour-dial";
+import { LineupIndex } from "@/components/products/lineup-index";
+import { Manifesto } from "@/components/hero/manifesto";
 import { JournalPreview } from "@/components/journal/journal-preview";
+import { SunriseCta } from "@/components/hero/sunrise-cta";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <HeroSection />
-      <FeaturedProducts />
-      <BrandStorySection />
-      <CoffeeFinder />
-      <LifestyleSection />
+      <HourDial />
+      <LineupIndex />
+      <Manifesto />
       <JournalPreview />
-    </div>
+      <SunriseCta />
+    </>
   );
 }

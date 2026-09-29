@@ -2,126 +2,108 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { ShoppingBag, Search, User, Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import { Logo } from "@/components/brand/logo";
 import { useCart } from "@/lib/hooks/use-cart";
-import { AnnouncementBar } from "./announcement-bar";
+
+const links = [
+  { href: "/shop", label: "Shop" },
+  { href: "/our-story", label: "Story" },
+  { href: "/journal", label: "Journal" },
+];
 
 export const Header = () => {
   const { items, setIsOpen } = useCart();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <>
-      <AnnouncementBar />
-      <header className="sticky top-0 z-40 bg-ivory/95 backdrop-blur-sm border-b border-sand/40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Mobile menu button */}
-            <div className="flex items-center md:hidden">
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-espresso p-2"
-                aria-label="Toggle menu"
-              >
-                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
+      <div className="bg-ink text-paper on-dark">
+        <p className="label wrap py-2.5 text-center">Free shipping on orders over $50</p>
+      </div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex space-x-8">
+      <header className="sticky top-0 z-50 bg-paper border-b rule">
+        <div className="wrap grid grid-cols-3 items-center h-16 md:h-20">
+          <nav aria-label="Primary" className="hidden md:flex items-center gap-8">
+            {links.map((l) => (
               <Link
-                href="/shop"
-                className="text-espresso hover:text-coffee transition-colors text-sm uppercase tracking-wider font-medium"
+                key={l.href}
+                href={l.href}
+                aria-current={pathname.startsWith(l.href) ? "page" : undefined}
+                className={`label link-under py-1 ${pathname.startsWith(l.href) ? "text-ember" : ""}`}
               >
-                Shop
+                {l.label}
               </Link>
-              <Link
-                href="/our-story"
-                className="text-espresso hover:text-coffee transition-colors text-sm uppercase tracking-wider font-medium"
-              >
-                Our Story
-              </Link>
-              <Link
-                href="/journal"
-                className="text-espresso hover:text-coffee transition-colors text-sm uppercase tracking-wider font-medium"
-              >
-                Journal
-              </Link>
-            </nav>
+            ))}
+          </nav>
 
-            {/* Logo */}
-            <div className="flex-1 md:flex-none text-center">
-              <Link
-                href="/"
-                className="font-serif text-2xl md:text-3xl font-bold tracking-widest text-espresso uppercase"
-              >
-                Morrow
-              </Link>
-            </div>
+          <button
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            className="label md:hidden justify-self-start py-3 -my-3"
+            aria-label="Open menu"
+            aria-expanded={menuOpen}
+          >
+            Menu
+          </button>
 
-            {/* Right side icons */}
-            <div className="flex items-center space-x-6">
-              <button
-                type="button"
-                className="text-espresso hover:text-coffee transition-colors p-1"
-                aria-label="Search"
-              >
-                <Search size={20} />
-              </button>
-              <button
-                type="button"
-                className="text-espresso hover:text-coffee transition-colors p-1 hidden sm:block"
-                aria-label="Account"
-              >
-                <User size={20} />
-              </button>
-              <button
-                type="button"
-                onClick={() => setIsOpen(true)}
-                className="text-espresso hover:text-coffee transition-colors p-1 relative"
-                aria-label="Cart"
-              >
-                <ShoppingBag size={20} />
-                {totalItems > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-espresso text-ivory text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">
-                    {totalItems}
-                  </span>
-                )}
-              </button>
-            </div>
-          </div>
+          <Link href="/" className="justify-self-center" aria-label="Morrow Coffee, home" onClick={() => setMenuOpen(false)}>
+            <Logo />
+          </Link>
+
+          <button
+            type="button"
+            onClick={() => setIsOpen(true)}
+            className="label justify-self-end py-3 -my-3 link-under"
+            aria-label={`Open bag, ${totalItems} ${totalItems === 1 ? "item" : "items"}`}
+          >
+            Bag <span className="text-ember">({totalItems})</span>
+          </button>
         </div>
-
-        {/* Mobile menu drawer */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-sand/40 bg-ivory px-4 pt-2 pb-6 space-y-3">
-            <Link
-              href="/shop"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-espresso hover:text-coffee py-2 text-base font-medium tracking-wide uppercase"
-            >
-              Shop
-            </Link>
-            <Link
-              href="/our-story"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-espresso hover:text-coffee py-2 text-base font-medium tracking-wide uppercase"
-            >
-              Our Story
-            </Link>
-            <Link
-              href="/journal"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block text-espresso hover:text-coffee py-2 text-base font-medium tracking-wide uppercase"
-            >
-              Journal
-            </Link>
-          </div>
-        )}
       </header>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="fixed inset-0 z-[60] bg-ink text-paper on-dark flex flex-col"
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
+            exit={{ clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu"
+          >
+            <div className="wrap flex items-center justify-between h-16">
+              <Logo />
+              <button type="button" onClick={() => setMenuOpen(false)} className="label py-3 -my-3">
+                Close
+              </button>
+            </div>
+            <nav aria-label="Mobile" className="wrap flex-1 flex flex-col justify-center gap-2">
+              {links.map((l, i) => (
+                <motion.div
+                  key={l.href}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 + i * 0.07, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <Link
+                    href={l.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="t-display block text-[clamp(3.5rem,18vw,7rem)]"
+                  >
+                    {l.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

@@ -14,6 +14,8 @@ export interface Product {
   id: string;
   name: string;
   slug: string;
+  /** Hour of the morning this roast belongs to, 5 (before light) to 11 (high morning). */
+  hour: number;
   description: string;
   price: number;
   origin: string;

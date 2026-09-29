@@ -1,27 +1,26 @@
 import { getProductsByCategory } from "@/lib/data/products";
 import { ProductCard } from "@/components/products/product-card";
+import { PageHead } from "@/components/ui/page-head";
 
 export default function FilterPage() {
-  const products = getProductsByCategory("filter");
+  const products = getProductsByCategory("filter").sort((a, b) => a.hour - b.hour);
 
   return (
-    <div className="py-12 bg-ivory">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h1 className="text-4xl font-serif font-bold text-espresso uppercase tracking-wider mb-4">
-            Filter Coffee
-          </h1>
-          <p className="text-coffee">
-            Bright, clean coffees for pour-over, drip, and French press brewing.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+    <>
+      <PageHead
+        label="Shop / Filter"
+        title={
+          <>
+            Filter, <em>bright and clean.</em>
+          </>
+        }
+        intro="Coffees for pour-over, drip and French press."
+      />
+      <div className="wrap grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3 pb-24 md:pb-32">
+        {products.map((p, i) => (
+          <ProductCard key={p.id} product={p} index={i} />
+        ))}
       </div>
-    </div>
+    </>
   );
 }
