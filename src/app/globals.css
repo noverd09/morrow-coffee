@@ -1,13 +1,13 @@
-/* morrow | mood: warm-editorial | structure: long-scroll-narrative + editorial-index | palette: ink/paper/dawn/sun | contrast: verified, see .tastemaker/style-lock.md */
+/* morrow | mood: warm-editorial | structure: long-scroll-narrative + editorial-index | palette: ink/paper/cherry(dawn)/blush(sun) | contrast: verified, see .tastemaker/style-lock.md */
 @import "tailwindcss";
 
 :root {
   --paper: #f3ebdc;
   --ink: #1b120c;
   --oat: #e7dac2;
-  --dawn: #2e3d8c;
-  --dawn-hi: #aebbff;
-  --sun: #f6de8d;
+  --dawn: #A31F3A;
+  --dawn-hi: #F4A9B8;
+  --sun: #F5C9C2;
   --bean: #3f4a2e;
   --mute: #5e4e42;
   --crema: #c69a62;

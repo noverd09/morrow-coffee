@@ -5,7 +5,7 @@ const origins = [...products].sort((a, b) => a.hour - b.hour).map((p) => p.origi
 
 const Sun = () => (
   <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" className="shrink-0">
-    <path d="M1 10a6 6 0 0 1 12 0z" fill="#F6DE8D" />
+    <path d="M1 10a6 6 0 0 1 12 0z" fill="#F5C9C2" />
   </svg>
 );
 

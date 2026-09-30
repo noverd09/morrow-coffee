@@ -41,7 +41,7 @@ export const Bag = ({ name, origin, hour, className = "" }: BagProps) => {
       <path d="M22 40h256l1 22H21z" fill="#000" opacity="0.14" />
       <path d="M22 62h256" stroke={fg} strokeOpacity="0.35" strokeDasharray="2 5" />
       <g clipPath={`url(#${uid}-sky)`}>
-        <circle cx="150" cy={sunY} r="52" fill={fg === "#F3EBDC" ? "#F6DE8D" : "#2E3D8C"} />
+        <circle cx="150" cy={sunY} r="52" fill={fg === "#F3EBDC" ? "#F5C9C2" : "#A31F3A"} />
       </g>
       <rect x="30" y={horizon} width="240" height="2.5" fill={fg} />
       <text x="30" y="276" fill={fg} fontFamily="var(--font-mono), monospace" fontSize="11" letterSpacing="1.4">

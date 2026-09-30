@@ -1,11 +1,11 @@
 // The Morrow sky: roast level is a time of morning. Each hour maps to a flat sky colour.
 const STOPS: [number, string][] = [
   [5, "#1B120C"],
-  [6.5, "#1F2450"],
-  [7.25, "#2E3D8C"],
-  [8, "#D8829A"],
-  [9, "#F6DE8D"],
-  [10.25, "#F7EBC6"],
+  [6.5, "#3A1526"],
+  [7.25, "#A31F3A"],
+  [8, "#E58FA0"],
+  [9, "#F5C9C2"],
+  [10.25, "#F8E7DC"],
   [11, "#F3EBDC"],
 ];
 

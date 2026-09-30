@@ -3,7 +3,7 @@
 ## Direction contract
 - Thesis: Coffee sorted by sunrise. Roast level becomes time of morning (dark roast = before light, light roast = high morning). Every coffee has an hour.
 - Brand name: Morrow. Line: "Pick your first hour."
-- First viewport: giant serif headline, one dawn-indigo sun disc rising behind one coffee bag, horizon strip at the bottom.
+- First viewport: giant serif headline, one cherry-red sun disc (the sun is a ripe coffee cherry) rising behind one coffee bag, horizon strip at the bottom.
 - Signature: the Hour Dial (slider 05:00 to 11:00 recolors the sky, moves the sun, surfaces the nearest coffee).
 - Risk: serif-led, flat color, no photography on the home page; bags are generated SVG art, not stock photos.
 - Mood: warm + editorial. Voice: measured, concrete, no em dashes.
@@ -14,15 +14,15 @@
 | ink | #1B120C | text, dark sections |
 | paper | #F3EBDC | page background |
 | oat | #E7DAC2 | surface / alt band |
-| dawn | #2E3D8C | brand accent (blue hour indigo), CTA fill, links on paper |
-| dawn-hi | #AEBBFF | accent text on ink only |
-| sun | #F6DE8D | sun disc, accent text on ink, butter yellow bands |
+| dawn | #A31F3A | brand accent (coffee cherry red), CTA fill, links on paper |
+| dawn-hi | #F4A9B8 | accent text on ink only |
+| sun | #F5C9C2 | blush: sun disc on dark sky, accent text on ink, blush bands |
 | bean | #3F4A2E | green-bean band |
 | mute | #5E4E42 | secondary text |
 | crema | #C69A62 | decorative only |
 
-Text-safe (>= 4.5): ink/paper 15.6, ink/oat 13.4, mute/paper 6.7, mute/oat 5.8, dawn/paper 8.2, paper/dawn 8.2, paper/ink 15.6, sun/ink 13.8, dawn-hi/ink 10.0, paper/bean 7.9, sun/bean 7.1.
-Not for text: dawn on ink (1.9), crema on paper. Use dawn-hi on ink.
+Text-safe (>= 4.5): ink/paper 15.6, ink/oat 13.4, mute/paper 6.7, mute/oat 5.8, dawn/paper 6.3, dawn/oat 5.4, paper/dawn 6.3, dawn/sun 5.0, paper/ink 15.6, sun/ink 12.3, dawn-hi/ink 9.9, paper/bean 7.9, sun/bean 6.3.
+Not for text: dawn on ink (2.5), crema on paper. Use dawn-hi on ink.
 
 ## Type
 - Display: Instrument Serif (regular + italic). Body: Instrument Sans. Labels/data: Geist Mono, uppercase, tracked.

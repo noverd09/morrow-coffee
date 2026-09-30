@@ -23,7 +23,7 @@ export const HourDial = () => {
 
   const sky = skyColor(hour);
   const fg = onSky(sky);
-  const sunFill = fg === "#F3EBDC" ? "#F6DE8D" : "#2E3D8C";
+  const sunFill = fg === "#F3EBDC" ? "#F5C9C2" : "#A31F3A";
   const pos = arcPoint(hour);
 
   const nearest = sorted.reduce((best, p) => (Math.abs(p.hour - hour) < Math.abs(best.hour - hour) ? p : best));

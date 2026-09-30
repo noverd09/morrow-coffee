@@ -2,7 +2,7 @@ import React from "react";
 
 export const LogoMark = ({ size = 28 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
-    <path d="M6 22a10 10 0 0 1 20 0z" fill="#2E3D8C" />
+    <path d="M6 22a10 10 0 0 1 20 0z" fill="#A31F3A" />
     <rect x="2" y="23.5" width="28" height="2.5" fill="currentColor" />
   </svg>
 );
