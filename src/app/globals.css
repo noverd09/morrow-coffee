@@ -1,13 +1,13 @@
-/* morrow | mood: warm-editorial | structure: long-scroll-narrative + editorial-index | palette: ink/paper/ember/sun | contrast: verified, see .tastemaker/style-lock.md */
+/* morrow | mood: warm-editorial | structure: long-scroll-narrative + editorial-index | palette: ink/paper/dawn/sun | contrast: verified, see .tastemaker/style-lock.md */
 @import "tailwindcss";
 
 :root {
   --paper: #f3ebdc;
   --ink: #1b120c;
   --oat: #e7dac2;
-  --ember: #c23a12;
-  --ember-hi: #f0602f;
-  --sun: #f2b233;
+  --dawn: #2e3d8c;
+  --dawn-hi: #aebbff;
+  --sun: #f6de8d;
   --bean: #3f4a2e;
   --mute: #5e4e42;
   --crema: #c69a62;
@@ -19,8 +19,8 @@
   --color-paper: var(--paper);
   --color-ink: var(--ink);
   --color-oat: var(--oat);
-  --color-ember: var(--ember);
-  --color-ember-hi: var(--ember-hi);
+  --color-dawn: var(--dawn);
+  --color-dawn-hi: var(--dawn-hi);
   --color-sun: var(--sun);
   --color-bean: var(--bean);
   --color-mute: var(--mute);
@@ -56,12 +56,12 @@ body::before {
 }
 
 ::selection {
-  background: var(--ember);
+  background: var(--dawn);
   color: var(--paper);
 }
 
 :focus-visible {
-  outline: 2px solid var(--ember);
+  outline: 2px solid var(--dawn);
   outline-offset: 3px;
 }
 
@@ -141,10 +141,10 @@ body::before {
   transform: scale(0.97);
 }
 
-.btn-ember {
-  background: var(--ember);
+.btn-dawn {
+  background: var(--dawn);
   color: var(--paper);
-  border-color: var(--ember);
+  border-color: var(--dawn);
 }
 
 .btn-ink {
@@ -169,13 +169,13 @@ body::before {
 }
 
 @media (hover: hover) {
-  .btn-ember:hover {
+  .btn-dawn:hover {
     background: var(--ink);
     border-color: var(--ink);
   }
   .btn-ink:hover {
-    background: var(--ember);
-    border-color: var(--ember);
+    background: var(--dawn);
+    border-color: var(--dawn);
   }
   .btn-line:hover {
     background: var(--ink);
@@ -235,7 +235,7 @@ body::before {
 
 .field:focus {
   outline: none;
-  border-bottom-color: var(--ember);
+  border-bottom-color: var(--dawn);
 }
 
 /* Marquee */
@@ -281,7 +281,7 @@ body::before {
   height: 34px;
   margin-top: -16px;
   border-radius: 999px;
-  background: var(--ember);
+  background: var(--dawn);
   border: 3px solid var(--paper);
 }
 
@@ -289,7 +289,7 @@ body::before {
   width: 28px;
   height: 28px;
   border-radius: 999px;
-  background: var(--ember);
+  background: var(--dawn);
   border: 3px solid var(--paper);
 }
 

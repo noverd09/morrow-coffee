@@ -130,7 +130,7 @@ export default function CheckoutPage() {
               </label>
             </fieldset>
 
-            <button type="submit" disabled={items.length === 0} className="btn btn-ember w-full py-5">
+            <button type="submit" disabled={items.length === 0} className="btn btn-dawn w-full py-5">
               Place order / ${total.toFixed(2)}
             </button>
           </form>

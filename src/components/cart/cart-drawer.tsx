@@ -61,7 +61,7 @@ export const CartDrawer = () => {
                   )}
                 </p>
                 <div className="mt-3 h-1 bg-ink/15" aria-hidden="true">
-                  <div className="h-full bg-ember transition-[width] duration-300" style={{ width: `${progress * 100}%` }} />
+                  <div className="h-full bg-dawn transition-[width] duration-300" style={{ width: `${progress * 100}%` }} />
                 </div>
               </div>
             )}
@@ -135,7 +135,7 @@ export const CartDrawer = () => {
                   <span className="label">Subtotal</span>
                   <span className="font-display text-3xl tabular-nums">${subtotal.toFixed(2)}</span>
                 </div>
-                <Link href="/checkout" onClick={() => setIsOpen(false)} className="btn btn-ember w-full py-4">
+                <Link href="/checkout" onClick={() => setIsOpen(false)} className="btn btn-dawn w-full py-4">
                   Checkout
                 </Link>
                 <Link href="/cart" onClick={() => setIsOpen(false)} className="label link-under block text-center py-2">

@@ -34,7 +34,7 @@ export const HeroSection = () => {
         <h1 className="t-display max-w-[9ch] lg:max-w-none">
           <Line delay={0.1}>Pick your</Line>
           <Line delay={0.2}>
-            <em className="text-ember">first hour.</em>
+            <em className="text-dawn">first hour.</em>
           </Line>
         </h1>
 
@@ -48,7 +48,7 @@ export const HeroSection = () => {
             Six small-batch coffees, ordered from dark roast to light like the sky between night and noon.
           </p>
           <div className="flex flex-wrap gap-3">
-            <a href="#hour" className="btn btn-ember">
+            <a href="#hour" className="btn btn-dawn">
               Choose your hour
             </a>
             <Link href="/shop" className="btn btn-line">
@@ -62,7 +62,7 @@ export const HeroSection = () => {
       <div className="relative lg:absolute lg:right-[3vw] lg:bottom-14 w-full lg:w-[min(58vw,760px)] px-[var(--gutter)] lg:px-0 mt-4 lg:mt-0">
         <motion.div style={{ y: sunParallax }} className="relative w-full aspect-[2/1] overflow-hidden">
           <motion.div
-            className="w-full aspect-square rounded-full bg-ember"
+            className="w-full aspect-square rounded-full bg-dawn"
             initial={{ y: "100%" }}
             animate={{ y: "0%" }}
             transition={{ duration: 1.6, delay: 0.1, ease: expo }}

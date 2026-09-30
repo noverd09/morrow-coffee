@@ -86,7 +86,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
         <p className="label text-mute mb-3">Tasting notes</p>
         <ul className="flex flex-wrap gap-2">
           {product.tastingNotes.map((n) => (
-            <li key={n} className="font-display italic text-2xl border-b border-ember pr-2">
+            <li key={n} className="font-display italic text-2xl border-b border-dawn pr-2">
               {n}
             </li>
           ))}
@@ -152,7 +152,7 @@ export function ProductDetailsClient({ product }: ProductDetailsClientProps) {
         <button
           type="button"
           onClick={() => addToCart(product, selectedSize, selectedGrind, quantity)}
-          className="btn btn-ember flex-1 py-4"
+          className="btn btn-dawn flex-1 py-4"
         >
           Add to bag / ${(finalPrice * quantity).toFixed(2)}
         </button>

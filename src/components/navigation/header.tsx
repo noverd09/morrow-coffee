@@ -33,7 +33,7 @@ export const Header = () => {
                 key={l.href}
                 href={l.href}
                 aria-current={pathname.startsWith(l.href) ? "page" : undefined}
-                className={`label link-under py-1 ${pathname.startsWith(l.href) ? "text-ember" : ""}`}
+                className={`label link-under py-1 ${pathname.startsWith(l.href) ? "text-dawn" : ""}`}
               >
                 {l.label}
               </Link>
@@ -60,7 +60,7 @@ export const Header = () => {
             className="label justify-self-end py-3 -my-3 link-under"
             aria-label={`Open bag, ${totalItems} ${totalItems === 1 ? "item" : "items"}`}
           >
-            Bag <span className="text-ember">({totalItems})</span>
+            Bag <span className="text-dawn">({totalItems})</span>
           </button>
         </div>
       </header>

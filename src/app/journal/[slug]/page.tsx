@@ -49,7 +49,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
       <article className="wrap section-md">
         <div className="max-w-2xl mx-auto space-y-6 text-lg article-body">
-          <p className="font-display text-3xl leading-snug border-l-2 border-ember pl-6">{article.excerpt}</p>
+          <p className="font-display text-3xl leading-snug border-l-2 border-dawn pl-6">{article.excerpt}</p>
 
           <div dangerouslySetInnerHTML={{ __html: article.content }} />
 

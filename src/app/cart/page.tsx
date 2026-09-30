@@ -108,7 +108,7 @@ export default function CartPage() {
                   <dd className="font-display text-3xl tabular-nums">${total.toFixed(2)}</dd>
                 </div>
               </dl>
-              <Link href="/checkout" className="btn btn-ember w-full py-4">
+              <Link href="/checkout" className="btn btn-dawn w-full py-4">
                 Proceed to checkout
               </Link>
             </aside>

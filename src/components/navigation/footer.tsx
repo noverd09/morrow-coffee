@@ -49,7 +49,7 @@ export const Footer = () => {
       {/* Wordmark rising over the horizon */}
       <div className="relative select-none" aria-hidden="true">
         <div className="absolute left-1/2 -translate-x-1/2 bottom-[12%] w-[min(38vw,520px)] aspect-[2/1] overflow-hidden">
-          <div className="w-full aspect-square rounded-full bg-ember" />
+          <div className="w-full aspect-square rounded-full bg-dawn-hi" />
         </div>
         <p className="relative font-display lowercase text-center leading-[0.8] tracking-tighter text-[clamp(6rem,27vw,26rem)] translate-y-[8%] text-paper">
           morrow

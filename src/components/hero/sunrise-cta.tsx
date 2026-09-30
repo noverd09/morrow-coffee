@@ -24,7 +24,7 @@ export const SunriseCta = () => {
         </div>
       </div>
       <motion.div
-        className="absolute -right-[8vw] -bottom-[18vw] w-[min(60vw,720px)] aspect-square rounded-full bg-ember"
+        className="absolute -right-[8vw] -bottom-[18vw] w-[min(60vw,720px)] aspect-square rounded-full bg-dawn"
         initial={{ y: 80, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         viewport={{ once: true, margin: "-20%" }}
